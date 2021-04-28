@@ -1,0 +1,20 @@
+{
+  "name": "gris-mailer",
+  "version": "1.0.0",
+  "description": "gris's email sender",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "gris-mail-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BobbleHatkjh/GRIS-mailer.git"
+  },
+  "author": "bobblehat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BobbleHatkjh/GRIS-mailer/issues"
+  },
+  "homepage": "https://github.com/BobbleHatkjh/GRIS-mailer#readme"
+}
