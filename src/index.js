@@ -1,1 +1,6 @@
-console.log('[[[[[[ START GRIS ]]]]]]')
+
+
+
+const Send = require('./utils/mailer').Send
+
+Send()
