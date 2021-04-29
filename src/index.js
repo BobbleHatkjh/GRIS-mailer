@@ -4,6 +4,7 @@ const Send = require('./utils/mailer').Send;
 const Koa = require('./utils/koaCore').koaCore;
 
 Koa.Listen(8010);
+
 Koa.GET((param) => {
     let url = param.url;
     let request = param.request;
