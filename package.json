@@ -2,9 +2,9 @@
   "name": "gris-mailer",
   "version": "1.0.0",
   "description": "gris's email sender",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "gris-mail-test"
   },
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/BobbleHatkjh/GRIS-mailer/issues"
   },
-  "homepage": "https://github.com/BobbleHatkjh/GRIS-mailer#readme"
+  "homepage": "https://github.com/BobbleHatkjh/GRIS-mailer#readme",
+  "dependencies": {
+    "nodemailer": "^6.6.0"
+  }
 }
