@@ -1,20 +1,20 @@
-
 const Send = require('./utils/mailer').Send;
-
 const Koa = require('./utils/koaCore').koaCore;
 
+/** 监听端口 */
 Koa.Listen(8010);
 
 Koa.GET((param) => {
     let url = param.url;
     let request = param.request;
     let query = request.query;
-
+    console.log(url, param.method);
     return {
         status: 200,
         msg: {
             url,
-            query
+            query,
+            data: '收到啦'
         }
     }
 })
