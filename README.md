@@ -8,7 +8,7 @@ GRIS的自动邮件发送站，通常情况下用来接收GRIS给
 发送日报周报月报年报之类的。
 _—by Node.js_
 
-  
+&emsp;
 >邮件接口
 ```
 {
@@ -18,10 +18,11 @@ _—by Node.js_
 }
 ```  
 
-
+&emsp;
+***
 >Param的写法
   
-##直传message
+直传message
 ```
 123
 ```
