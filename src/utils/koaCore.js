@@ -15,7 +15,7 @@ module.exports.koaCore = new class {
         })
     }
 
-    POST () {
+    CAPTURE() {
 
     }
 

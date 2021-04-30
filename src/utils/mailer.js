@@ -22,6 +22,11 @@ const standardMailOptions = {
     html: fs.readFileSync(path.resolve(__dirname, '../standard/standardContent.html'), 'utf-8')
 };
 
+/** 邮件内容解析 */
+const mailAnalysis = (param) => {
+
+}
+
 /** 邮件发送的方法
  * @param mailOptions 邮件的设置项（给谁发发给谁发什么）
  * @param transport 发送邮件的基底（邮箱账户，授权码）
