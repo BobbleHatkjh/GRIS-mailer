@@ -8,13 +8,15 @@ Koa.Listen(8010);
 Koa.GET((param) => {
     let url = param.url;
     let request = param.request;
+    // let token = param.token;
     let query = request.query;
-    console.log(url, param.method);
+    console.log(url,'============\n', param.request.body, param.method);
     return {
         status: 200,
         msg: {
             url,
             query,
+            req: param.request.body,
             data: '收到啦'
         }
     }

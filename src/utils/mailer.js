@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const Join = require('../standard/join').Join;
 const fs = require('fs');
 const path = require('path');
 
@@ -33,6 +34,7 @@ const mailAnalysis = (param) => {
  * @param message 直传信息，不为undefined时用默认配置发送这一内容
  * */
 module.exports.Send = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
+    const newMailOption = Join(mailOptions);
     transport.sendMail(message ? {...mailOptions, html: message} : mailOptions,(err,info) => {
         if (err) {
             console.log('==========[[[[[[ GRIS\'s Mail ]]]]]]==========\n', err, '\n================== 发送失败 ==================');
