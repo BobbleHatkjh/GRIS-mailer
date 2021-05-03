@@ -1,5 +1,6 @@
 const Send = require('./utils/mailer').Send;
 const Koa = require('./utils/koaCore').koaCore;
+const errorCode = require('./utils/koaCore').errorCode;
 
 /** 监听端口 */
 Koa.Listen(8010);
@@ -8,22 +9,24 @@ Koa.Listen(8010);
 Koa.GET((param) => {
     let url = param.url;
     let request = param.request;
-    let token = param.token;
+    let token = param.headers['token'];
     let query = request.query;
-    console.log(url,'============\n', param.request.body, param.method);
-    if (param.method !== 'POST') return {
-        status: 403,
-        msg: '使用了错误的请求方式，请使用POST方式请求'
-    }
-    if (token !== 'POST') return {
-        status: 403,
-        msg: '使用了错误的请求方式，请使用POST方式请求'
-    }
+    console.log(url, token, param.method);
+    // if (param.token !== 'POST') return {
+    //     status: 401,
+    //     msg: 'token不正确，请联系管理员'
+    // }
+    // if (token.method !== 'POST') return {
+    //     status: 403,
+    //     msg: '使用了错误的请求方式，请使用POST方式请求'
+    // }
     return {
         status: 200,
-        msg: {
+        config: {
+            token: 'new_token'
+        },
+        data: {
             url,
-            query,
             req: param.request.body,
             data: '收到啦'
         }

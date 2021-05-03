@@ -4,20 +4,9 @@ const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 
 // 获取post的data
-const parsePostData = (ctx) => {
-    return new Promise((resolve, reject) => {
-        try{
-            let postData = '';
-            ctx.req.addListener('data', (data) => {
-                postData += data;
-            });
-            ctx.req.on('end', () => {
-                resolve(postData)
-            })
-        } catch (error) {
-            reject(error)
-        }
-    })
+module.exports.errorCode = {
+    401: 'token不正确，请联系管理员',
+    403: '使用了错误的请求方式，请使用POST方式请求'
 }
 
 // string => json
@@ -37,10 +26,10 @@ module.exports.koaCore = new class {
         app.use(async (param) => {
             param.set("Access-Control-Allow-Origin", "*");
             param.set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS, DELETE");
-            param.set("Access-Control-Allow-Headers", "x-requested-with, accept, origin, content-type");
+            param.set("Access-Control-Allow-Headers", "x-requested-with, accept, origin, content-type, token");
             param.set("Content-Type", "application/json;charset=utf-8");
-            param.set("Access-Control-Allow-Credentials", false);
-
+            param.set("Access-Control-Allow-Credentials", true);  // 允许携带请求头
+            param.set("Access-Control-Max-Age", 86400);  // 跨域预检时间
             // let postData = await parsePostData(param);
             // console.log(postData)
             // param.postData = postData;
