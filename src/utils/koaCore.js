@@ -3,25 +3,31 @@ const bodyParser = require('koa-bodyparser');
 
 const app = new Koa();
 
-// 获取post的data
+/** 请求检查 */
+const requestCheck = (param) => {
+    if (param.method !== 'POST') {
+        param.status = 403;
+        return {
+            msg: '使用了错误的请求方式，请使用POST方式请求'
+        }
+    }
+    if (param.headers['token'] !== 'gris_token') {
+        param.status = 401;
+        return {
+            msg: '未检查到正确的token或token缺失，请联系管理员'
+        }
+    }
+    return false
+}
+
+/** 错误代码 */
 module.exports.errorCode = {
     401: 'token不正确，请联系管理员',
     403: '使用了错误的请求方式，请使用POST方式请求'
 }
 
-// string => json
-const parseQueryString = (query) => {
-    let queryData = {};
-    let queryStringList = query.split('&');
-    for (let [index, query] of queryStringList.entries()) {
-        let itemList = query.split('=');
-        queryData[itemList[0]] = decodeURIComponent(itemList[1]);
-    }
-    return queryData
-}
-
 module.exports.koaCore = new class {
-    GET (func) {
+    Capture (func) {
         app.use(bodyParser());
         app.use(async (param) => {
             param.set("Access-Control-Allow-Origin", "*");
@@ -32,16 +38,9 @@ module.exports.koaCore = new class {
             param.set("Access-Control-Max-Age", 86400);  // 跨域预检时间
             // let postData = await parsePostData(param);
             // console.log(postData)
-            // param.postData = postData;
-            param.body = func(param)
-
-            // param.set('Cache-Control', 'max-age=60')
+            param.body = requestCheck(param) || func(param)
 
         })
-    }
-
-    CAPTURE() {
-
     }
 
     Listen (port, func = () => console.log('====[[ MAIL START ]]====')) {

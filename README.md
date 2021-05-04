@@ -13,26 +13,29 @@ token: [秘] // token是验证，以便去白名单验证
 &emsp;
 >Param的写法
 
-⬇️ 直传message ⬇️
-```
-{
-    url: '/mail',
-    method: 'POST',
-    token: [秘],
-    message: '这是要传的速报'
-}
-```  
-
 ⬇️ 标准格式 ⬇️
 ```
-{
+* header需要携带token *
+
+return await request({
     url: '/mail',
     method: 'POST',
-    token: [秘],
-    mail: {
+    data: {
         title: '标题',
         content: '内容',
         inscribe: '落款'
     }
-}
+})
 ```
+
+⬇️ 直传message ⬇️ 
+```
+// 不推荐使用，即将废弃
+
+return await request({
+    url: '/mail',
+    method: 'POST',
+    token: [秘],
+    message: '这是要传的速报'
+})
+```  
