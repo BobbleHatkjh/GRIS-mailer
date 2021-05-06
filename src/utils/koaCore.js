@@ -40,7 +40,7 @@ module.exports.koaCore = new class {
 
     Post (address, func) {
         this.router.post(address, async (ctx) => {
-            ctx.body = requestCheck(ctx) || func(ctx)
+            ctx.body = requestCheck(ctx) || await func(ctx)
         })
     }
 
