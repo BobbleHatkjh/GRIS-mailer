@@ -14,16 +14,16 @@ module.exports.Log = new class {
         }
     }
 
-    Write (content = '123') {
-        fs.writeFile(this.logName, content, this.options, (err) => {
+    Write(data = {filename: this.logName, content: '123'}) {
+        fs.writeFile(this.logName, data.content, this.options, (err) => {
             if (err) throw err;
             console.log('write complete')
         })
     }
 
-    Read () {
+    Read(address = '../log/test_2.txt') {
         return new Promise((resolve, reject) => {
-            fs.readFile(this.logName, (err, data) => {
+            fs.readFile(path.resolve(__dirname, address), (err, data) => {
                 if (err) reject(err);
                 resolve(JSON.parse(data.toString()))
             })

@@ -2,7 +2,6 @@ const Send = require('./utils/mailer').Send;
 const Koa = require('./utils/koaCore').koaCore;
 const Log = require('./utils/logger').Log;
 
-/** 捕获请求 */
 // Koa.Get('/index',async (ctx) => {
 //     console.log('get', 'index', '123');
 //     return {
@@ -10,6 +9,7 @@ const Log = require('./utils/logger').Log;
 //     }
 // })
 
+// 邮件
 Koa.Post('/mail',async (ctx) => {
     let url = ctx.url;
     let request = ctx.request;
@@ -20,15 +20,29 @@ Koa.Post('/mail',async (ctx) => {
         msg: 'mail'
     }
 })
+
+// 读取日志
 Koa.Post('/log/read', async (ctx) => {
     return {
         data: await Log.Read()
     }
 })
 
+// 写入日志
+Koa.Post('log/write', async () => {
+
+})
+
 
 /** 监听端口 */
 Koa.Listen(8010);
+
+const demo = async () => {
+    const a = await Log.Read('../log/test.md');
+    console.log(a)
+}
+demo();
+
 
 // Log.Write('123');
 // console.log(Log.Read())
