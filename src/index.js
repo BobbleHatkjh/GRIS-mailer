@@ -10,12 +10,13 @@ const Log = require('./utils/logger').Log;
 // })
 
 // 邮件
-Koa.Post('/mail',async (ctx) => {
+Koa.Post('/mail', async (ctx) => {
     let url = ctx.url;
     let request = ctx.request;
     let token = ctx.headers['token'];
     let query = request.query;
-    console.log('post', url, token, ctx.method);
+    console.log('##mail##', ctx.request.body);
+    Send('123测试用')
     return {
         msg: 'mail'
     }
