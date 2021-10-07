@@ -1,6 +1,7 @@
 const Koa = require('koa2');
 const bodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
+const token = require('../../config')
 
 const app = new Koa();
 
@@ -52,7 +53,7 @@ module.exports.koaCore = new class {
 
 /** 请求检查 */
 const requestCheck = (param) => {
-    if (param.headers['token'] !== 'gris_token') {
+    if (param.headers['token'] !== token) {
         param.status = 401;
         return {
             msg: '未检查到正确的token或token缺失，请联系管理员'

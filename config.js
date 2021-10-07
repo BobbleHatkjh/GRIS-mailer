@@ -1,0 +1,1 @@
+module.exports.token = 'gris_token'
