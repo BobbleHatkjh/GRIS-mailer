@@ -16,7 +16,7 @@ Koa.Post('/mail', async (ctx) => {
     let token = ctx.headers['token'];
     let query = request.query;
     console.log('##mail##', ctx.request.body);
-    Send('123测试用')
+    Send(ctx.request.body)
     return {
         msg: 'mail'
     }
