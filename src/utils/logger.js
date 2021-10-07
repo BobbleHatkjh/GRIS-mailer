@@ -25,7 +25,8 @@ module.exports.Log = new class {
         return new Promise((resolve, reject) => {
             fs.readFile(path.resolve(__dirname, address), (err, data) => {
                 if (err) reject(err);
-                resolve(JSON.parse(data.toString()))
+                // resolve(JSON.parse(data.toString()))
+                resolve(data)
             })
         })
     }

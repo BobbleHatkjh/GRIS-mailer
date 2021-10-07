@@ -37,11 +37,11 @@ Koa.Post('log/write', async () => {
 /** 监听端口 */
 Koa.Listen(8010);
 
-const demo = async () => {
-    const a = await Log.Read('../log/test.md');
-    console.log(a)
-}
-demo();
+// const demo = async () => {
+//     const a = await Log.Read('../log/test.md');
+//     console.log(a)
+// }
+// demo();
 
 
 // Log.Write('123');

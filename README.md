@@ -3,7 +3,7 @@ GRIS的自动邮件发送站，通常情况下用来接收GRIS给 使用者需�
 _—by Node.js_
 
 &emsp;
->邮件接口
+> ```邮件接口```
 ```
 url: 'http://localhost:8010/mail'
 method: 'POST' // 仅支持POST方式请求以免造成混乱
@@ -11,7 +11,7 @@ token: [秘] // token是验证，以便去白名单验证
 ```  
 
 &emsp;
->Param的写法
+> ```Param的写法```
 
 ⬇️ 标准格式 ⬇️
 ```
