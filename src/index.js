@@ -11,14 +11,10 @@ const Log = require('./utils/logger').Log;
 
 // 邮件
 Koa.Post('/mail', async (ctx) => {
-    let url = ctx.url;
-    let request = ctx.request;
-    let token = ctx.headers['token'];
-    let query = request.query;
-    console.log('##mail##', ctx.request.body);
+    // console.log('##mail##', ctx.request.body);
     Send(ctx.request.body)
     return {
-        msg: 'mail'
+        msg: 'mail send'
     }
 })
 
@@ -36,7 +32,7 @@ Koa.Post('log/write', async () => {
 
 
 /** 监听端口 */
-Koa.Listen(8010);
+Koa.Listen(80);
 
 // const demo = async () => {
 //     const a = await Log.Read('../log/test.md');
