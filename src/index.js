@@ -2,6 +2,11 @@ const Send = require('./utils/mailer').Send;
 const Koa = require('./utils/koaCore').koaCore;
 const Log = require('./utils/logger').Log;
 
+// Log.Write({
+//     filename: '10_9',
+//     content: '[1231312312312]',
+//     time: '2021/10/9 19:00'
+// })
 
 
 // 发送邮件
@@ -10,6 +15,13 @@ Koa.Post('/mail', async (ctx) => {
     Send(ctx.request.body)
     return {
         msg: 'mail send'
+    }
+})
+
+// 写入日志
+Koa.Post('log/write', async (ctx) => {
+    return {
+        msg: Log.Write(ctx.request.body)
     }
 })
 
@@ -22,24 +34,19 @@ Koa.Post('/log/read', async (ctx) => {
 })
 
 
-// 写入日志
-Koa.Post('log/write', async () => {
-
-})
-
 
 /** 监听端口 */
 Koa.Listen(8010);
 
-// const demo = async () => {
-//     const a = await Log.Read('../log/test.md');
-//     console.log(a)
-// }
-// demo();
 
 
-// Log.Write('123');
-// console.log(Log.Read())
 
-// Send()
+
+
+
+
+
+
+
+
 // daily revenue  日报营收

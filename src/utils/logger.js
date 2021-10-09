@@ -7,18 +7,34 @@ module.exports.Log = new class {
     logName  // 日志地址
     options  // 读写配置
     constructor() {
-        this.logName = path.resolve(__dirname, '../log/test_2.txt');
+        this.logName = path.resolve(__dirname, '../log/log_.txt');
         this.options = {
             flags: 'a',
             encoding: 'utf8'
         }
     }
 
-    Write(data = {filename: this.logName, content: '123'}) {
-        fs.writeFile(this.logName, data.content, this.options, (err) => {
-            if (err) throw err;
-            console.log('write complete')
-        })
+    /**
+     * data
+     *  filename 文件名
+     *  content  日志内容
+     *  time     时间戳
+    */
+    Write(data = { filename: 'log_origin', content: 'test', time: 'time' }) {
+        // console.log(this.logName);
+        const content = typeof data.content === 'string' ? data.content : JSON.stringify(data.content)
+        fs.appendFileSync(
+            this.logName.split('.txt')[0] + data.filename + '.txt',
+            `\n\n[ ${data.time.split(' ')[0]} ------------------------------- ${data.time.split(' ')[1]} ]\n` + content, 
+            this.options,
+            (err) => {
+                if (err) throw err;
+                console.log('write complete');
+                return {
+                    msg: 'write complete'
+                }
+            }
+        )
     }
 
     Read(address = '../log/test_2.txt') {
