@@ -5,7 +5,7 @@ _—by Node.js_
 &emsp;
 > ```邮件接口```
 ```
-url: 'http://localhost:8010/mail'    localhost是本地默认的127.0.0.1那个，服务器上要换成服务器内网地址
+url: 'http://localhost:8010/mail'    localhost是本地默认的127.0.0.1那个
 method: 'POST'                       仅支持POST方式请求以免造成混乱
 token: [秘]                          token是验证，以便去白名单验证 （见config）
 ```  
