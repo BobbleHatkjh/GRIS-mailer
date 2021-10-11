@@ -31,7 +31,7 @@ module.exports.Log = new class {
         )
         console.log('write complete');
         return {
-            msg: 'write complete'
+            msg: '[log] write complete'
         }
     }
 

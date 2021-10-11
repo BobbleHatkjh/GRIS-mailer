@@ -1,6 +1,7 @@
 const Send = require('./utils/mailer').Send;
 const Koa = require('./utils/koaCore').koaCore;
 const Log = require('./utils/logger').Log;
+const Recorder = require('./utils/dataRecorder').Recorder
 
 // Log.Write({
 //     filename: '10_9',
@@ -31,12 +32,19 @@ Koa.Post('/log/read', async (ctx) => {
     }
 })
 
+// 写入数据
+Koa.Post('/data/write', async (ctx) => {
+    return await Recorder.Write(ctx.request.body)
+})
 
 
 /** 监听端口 */
 Koa.Listen(8010);
 
-
+// const a = async () =>{
+//     console.log(await Recorder.Read('2021_10_11'))
+// }
+// a();
 
 
 
