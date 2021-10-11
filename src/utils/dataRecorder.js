@@ -20,7 +20,7 @@ module.exports.Recorder = new class {
      *  content  数据内容
      *  time     时间戳
     */
-    Write(data = { filename: 'data_origin', content: 'test', time: 'time' }) {
+    Write(data = { filename: 'data_origin', content: 'test' }) {
         // console.log(this.logName);
         const content = typeof data.content === 'string' ? data.content : JSON.stringify(data.content)
         // writeFileSync 写入     
