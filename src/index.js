@@ -19,10 +19,8 @@ Koa.Post('/mail', async (ctx) => {
 })
 
 // 写入日志
-Koa.Post('log/write', async (ctx) => {
-    return {
-        msg: Log.Write(ctx.request.body)
-    }
+Koa.Post('/log/write', async (ctx) => {
+    return await Log.Write(ctx.request.body)
 })
 
 
