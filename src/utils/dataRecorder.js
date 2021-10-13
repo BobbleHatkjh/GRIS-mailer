@@ -16,7 +16,7 @@ module.exports.Recorder = new class {
 
     /**
      * data
-     *  filename 文件名  *主要是用来区分时间的*   例: 20xx_xx_xx
+     *  filename 文件名     *主要是用来区分时间的*   例: 20xx_xx_xx
      *  content  数据内容
      *  time     时间戳
     */
