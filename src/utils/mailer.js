@@ -35,6 +35,7 @@ const mailAnalysis = (param) => {
  * */
 module.exports.Send = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
     const mailHtml = Join(message);
+    console.log(mailHtml);
     transport.sendMail(message ? {...mailOptions, html: mailHtml} : mailOptions, (err,info) => {
         if (err) {
             console.log('==========[[[[[[ GRIS\'s Mail ]]]]]]==========\n', err, '\n================== 发送失败 ==================');
