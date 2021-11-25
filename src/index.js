@@ -10,7 +10,7 @@ const Recorder = require('./utils/dataRecorder').Recorder
 // })
 
 Send({
-    title: 'GRIS - Weekly',
+    title: 'GRIS WEEKLY',
     content: '测试内容',
     inscribe: '北京时间: 2021/11/23 16:54:13'
 })
