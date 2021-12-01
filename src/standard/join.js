@@ -3,9 +3,30 @@ const path = require('path');
 
 const head = fs.readFileSync(path.resolve(__dirname, './head.html'), 'utf-8');
 const tail = fs.readFileSync(path.resolve(__dirname, './tail.html'), 'utf-8')
-const title = (title) => {return `<div id="title" style="display: flex;justify-content: flex-start;align-items: center;height: 120px;width: 680px;margin: -140px auto 20px auto;font-weight: bolder;"><p style="font-size: 41px;margin-left: 36px;">${title}</p></div>`}
+const title = (title) => {return `<div style="
+box-shadow: 0 0 20px #66ccff8f;
+background-color: #FAFEFF;
+width: 600px;
+margin: 20px auto 20px auto;
+padding: 32px 40px;
+font-weight: bolder;
+line-height: 46px;
+font-size: 41px;
+background: url('https://raw.githubusercontent.com/BobbleHatkjh/VUE-Brick/master/static/banner.svg') no-repeat center center;
+background-position: center;
+background-size: 680px;">${title}</div>`}
 const content = (content) => `<div style="width: 640px;padding: 0 20px;margin: auto;min-height: 242px;">${content}</div>`
-const inscribe = (inscribe) => `<div style="position: relative;display: flex;align-items: center;justify-content: flex-start;width: 680px;height: 80px;margin: 20px auto;z-index: 99;"><p style="margin-left: 36px;font-weight: 600;">${inscribe}</p></div>`
+const inscribe = (inscribe) => `<div style="
+width: 640px;
+margin: 20px auto;
+padding: 20px;
+box-shadow: 0 0 20px #66ccff8f;
+font-size: 16px;
+line-height: 20px;
+font-weight: 600;
+background: url('https://raw.githubusercontent.com/BobbleHatkjh/VUE-Brick/master/static/grass.svg') no-repeat center center;
+background-position: 0% 68%;
+background-size: 680px;">${inscribe}</div>`
 
 
 /** 邮件的拼接 */
