@@ -33,3 +33,9 @@ background-size: 680px;">${inscribe}</div>`
 module.exports.Join = (param) => {
     return head + title(param.title) + content(param.content) + inscribe(param.inscribe) + tail
 }
+
+
+/** 周报，月报 之类的邮件内容 */
+module.exports.ReportContent = () => {
+    return ''
+}

@@ -9,11 +9,6 @@ const Recorder = require('./utils/dataRecorder').Recorder
 //     time: '2021/10/9 19:00'
 // })
 
-Send({
-    title: 'GRIS WEEKLY',
-    content: '测试内容',
-    inscribe: '北京时间: 2021/11/23 16:54:13'
-})
 
 // 发送邮件
 Koa.Post('/mail', async (ctx) => {
@@ -41,6 +36,12 @@ Koa.Post('/log/read', async (ctx) => {
 Koa.Post('/data/write', async (ctx) => {
     return await Recorder.Write(ctx.request.body)
 })
+
+// 周报、月报之类的
+Koa.Post('/report', async (ctx) => {
+
+})
+
 
 
 /** 监听端口 */

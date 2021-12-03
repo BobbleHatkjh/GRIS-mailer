@@ -68,6 +68,7 @@
             width: 640px;
             padding: 0 20px;
             margin: auto;
+            min-height: 242px;
             /* border-top: 2px solid #66ccff;
             border-bottom: 2px solid #66ccff; */
         }
@@ -126,6 +127,59 @@
             
             background-position: 0% 68%;
             background-size: 680px;
+        }
+        .fft{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+            width: 100%;
+            /* color: #66ccff; */
+            font-size: 30px;
+            /* background-color: #66ccff; */
+        }
+        .line{
+            /* height: 1px; */
+            width: 100%;
+            margin: 12px 0;
+            border-bottom: 1px solid #66ccff;
+            box-shadow: 0 0 10px #66ccff;
+        }
+        .dot{
+            background-color: #2fff1c;
+            width: 10px;
+            height: 10px;
+            box-shadow: 0 0 10px #67ff41;
+            border-radius: 100%;
+            margin-right: 10px;
+        }
+        .revenue_table{
+            display: flex;align-items: center;justify-content: space-between;
+        }
+        .revenue_table p{
+            display: flex;
+            margin: 6px auto;
+            justify-content: center;
+        }
+        .revenue_table p:nth-child(2){
+            width: 26%;
+        }
+        .revenue_table p:nth-child(3){
+            width: 14%;
+        }
+        .revenue_table p:nth-child(4){
+            width: 6%;
+        }
+        .revenue_table p:nth-child(5){
+            width: 14%;
+        }
+        .revenue_table p:nth-child(6){
+            width: 26%;
+        }
+        .revenue_table p:nth-child(7){
+            justify-content: end;
+            overflow: hidden;
+            width: 8%;
         }
     </style>
 </head>
@@ -232,7 +286,45 @@
         GRIS WEEKLY
     </div>
     <div class="content">
-        <p>
+        <div class="fft">
+            <p>本周共开 6 单</p>
+           <p>合计收益 +19%</p> 
+        </div>
+
+        <div class="line"> </div>
+
+        <div class="revenue_table">
+            <div class="dot"></div>
+            <p>2021/12/3 13:11:55</p>
+            <p>$61,020</p>
+            <p>▲</p>
+            <p>$63,020</p>
+            <p>2021/12/3 13:11:55</p>
+            <p>5.2%</p>
+        </div>
+        <div class="revenue_table">
+            <div class="dot"></div>
+            <p>2021/12/3 13:11:55</p>
+            <p>$60,020</p>
+            <p>▼</p>
+            <p>$57,020</p>
+            <p>2021/12/3 13:11:55</p>
+            <p>21%</p>
+        </div>
+        <div class="revenue_table">
+            <div class="dot"></div>
+            <p>2021/12/3 13:11:55</p>
+            <p>$60,020</p>
+            <p>▼</p>
+            <p>$57,020</p>
+            <p>2021/12/4 21:12:15</p>
+            <p>-10%</p>
+        </div>
+
+        <div class="line"> </div>
+
+        掉线的
+        <!-- <p>
             &nbsp;&nbsp;&nbsp;&nbsp;You need to check your GRIS system if you have seen this mail.
             This usually means that the mail delivery system has not captured the valid message content,
             but it may also be that the mail system is in testing.
@@ -248,7 +340,7 @@
             times,
             the system will stop trading, which means that you have been disconnected from your GRIS system for three
             hours.
-        </p>
+        </p> -->
 
     </div>
 

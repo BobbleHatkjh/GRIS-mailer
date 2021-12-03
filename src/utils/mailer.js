@@ -1,8 +1,9 @@
 const nodemailer = require('nodemailer');
 const Join = require('../standard/join').Join;
-const fs = require('fs');
-const path = require('path');
 
+/**
+ * 邮箱权限校验
+*/
 let mailTransport = nodemailer.createTransport({
     // host: 'smtp.qq.email',
     service: 'qq',
@@ -13,7 +14,9 @@ let mailTransport = nodemailer.createTransport({
     }
 });
 
-/** 基准测试邮件 */
+/** 邮件信息
+ * 给谁发 发给谁 发什么
+ */
 const standardMailOptions = {
     from: '"GRIS" <3206633623@qq.com>',
     to: '<3206633623@qq.com>',
