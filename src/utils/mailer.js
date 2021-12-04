@@ -20,7 +20,6 @@ let mailTransport = nodemailer.createTransport({
 const standardMailOptions = {
     from: '"GRIS" <3206633623@qq.com>',
     to: '<3206633623@qq.com>',
-    bcc: '密送',
     subject: 'GRIS - MailSystem',
     text: 'GRIS自动邮件系统 标准邮件',
     // html: fs.readFileSync(path.resolve(__dirname, '../standard/standardContent.html'), 'utf-8')
@@ -38,8 +37,8 @@ const mailAnalysis = (param) => {
  * */
 module.exports.Send = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
     const mailHtml = Join(message);
-    console.log(mailHtml);
-    transport.sendMail(message ? {...mailOptions, html: mailHtml} : mailOptions, (err,info) => {
+    // console.log(mailHtml);
+    transport.sendMail(message ? {...mailOptions, html: mailHtml, cc: message.CC || ''} : mailOptions, (err,info) => {
         if (err) {
             console.log('==========[[[[[[ GRIS\'s Mail ]]]]]]==========\n', err, '\n================== 发送失败 ==================');
         } else {
