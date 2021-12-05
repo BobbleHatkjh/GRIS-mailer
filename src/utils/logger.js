@@ -22,7 +22,8 @@ module.exports.Log = new class {
     */
     Write(data = { filename: 'log_origin', content: 'test', time: 'time' }) {
         // console.log(this.logName);
-        const content = typeof data.content === 'string' ? data.content : JSON.stringify(data.content)
+        const content = typeof data.content === 'string' ? data.content : JSON.stringify(data.content);
+        !fs.existsSync(path.resolve(__dirname, '../log')) && fs.mkdirSync(path.resolve(__dirname, '../log')); // 如果没有log文件夹
         fs.appendFileSync(
             this.logName.split('.txt')[0] + data.filename + '.txt',
             `\n\n[ ${data.time.split(' ')[0]} ------------------------------- ${data.time.split(' ')[1]} ]\n` + content, 

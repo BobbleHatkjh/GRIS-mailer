@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "gris-mail-test"
+    "build": "node src/shell.js",
+    "test": ""
   },
   "repository": {
     "type": "git",

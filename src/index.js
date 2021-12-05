@@ -3,7 +3,7 @@ const Koa = require('./utils/koaCore').koaCore;
 const Log = require('./utils/logger').Log;
 const Recorder = require('./utils/dataRecorder').Recorder
 
-// Log.Write({
+// Recorder.Write({
 //     filename: '10_9',
 //     content: '[1231312312312]',
 //     time: '2021/10/9 19:00'

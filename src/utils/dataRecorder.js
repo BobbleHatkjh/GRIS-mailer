@@ -22,7 +22,8 @@ module.exports.Recorder = new class {
     */
     Write(data = { filename: 'data_origin', content: 'test' }) {
         // console.log(this.logName);
-        const content = typeof data.content === 'string' ? data.content : JSON.stringify(data.content)
+        const content = typeof data.content === 'string' ? data.content : JSON.stringify(data.content);
+        !fs.existsSync(path.resolve(__dirname, '../recorder')) && fs.mkdirSync(path.resolve(__dirname, '../recorder')); // 如果没有log文件夹
         // writeFileSync 写入     
         // appendFileSync 追加
         fs.writeFileSync(
@@ -31,6 +32,7 @@ module.exports.Recorder = new class {
             this.options,
             (err) => { if (err) throw err }
         )
+        console.log('write complete');
         return {
             msg: '[data] write complete'
         }
