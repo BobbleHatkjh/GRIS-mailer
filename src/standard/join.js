@@ -43,15 +43,34 @@ class Report {
         align-items: flex-end;
         height: 60px;
         width: 100%;
-        font-size: 20px;"><p style="margin: 0">${param.title}</p><p style="margin: 0">>${param.extra || ''}</p></div>`;
+        font-size: 20px;"><p style="margin: 0">${param.title}</p><p style="margin: 0">${param.extra || ''}</p></div><div style="width: 100%;
+        margin: 12px 0;
+        border-bottom: 1px solid #66ccff;
+        box-shadow: 0 0 10px #66ccff" ></div>`;
 
     billing = (param) => {
         let _billing_ = '';
-        param.map(()=>{
-            _billing_ += ''
+        param.map((item)=>{
+            _billing_ += `<div style="display: flex;align-items: center;justify-content: space-between;">
+                <div style="width: 10px;height: 10px;border-radius: 100%;margin-right: 10px;background-color: ${checkBenifit(item) ? '#15f700' : '#eb1535'};box-shadow: 0 0 10px ${checkBenifit(item) ? '#15f700' : '#eb1535'}"></div>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 26%">${item.start_time}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 14%">$${item.start_price}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 6%">${item.way === 'buy' ? '▲' : '▼'}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 14%">$${item.end_price}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 26%">${item.end_time}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: end;width: 8%;overflow: hidden">${!checkBenifit(item) && '-'}${numberBenifit(item)}%</p>
+            </div>`
         })
+        return _billing_
     }
     
+    aurora = (param) => {
+        return ''
+    }
+
+    offline = () => {
+        return ''
+    }
 }
 
 const _r_ = new Report()
@@ -72,8 +91,24 @@ module.exports.ReportContent = (params) => {
         ans += _r_.title(item);
         ans += _r_[item.type](item.data);
     })
-    return head + _r_.title({title: '123', extra: '233333'}) + tail
+    return head + title('test') + content(ans) + inscribe('test123') + tail
 }
+
+// 算一下是不是盈利了，赚了的话会返回true
+const checkBenifit = (param) => {
+    return (param.start_price - param.end_price > 0 && param.way === 'sell') || (param.start_price - param.end_price < 0 && param.way === 'buy')
+}
+
+// 盈利了多少s
+const numberBenifit = (param) => {
+    return (Math.max(param.start_price, param.end_price) / Math.min(param.start_price, param.end_price) * 100 - 100).toPrecision(3)
+}
+
+
+
+
+
+
 
 
 
@@ -85,24 +120,35 @@ const params = [
         type: 'billing',
         data: [{
             start_time: '2021/12/3 13:11:55',
-            start_price: '61,020',
+            start_price: '61020',
             end_time: '2021/12/3 19:11:55',
-            end_price: '63,020',
+            end_price: '63030',
             way: 'buy'
         },{
             start_time: '2021/12/3 13:11:55',
-            start_price: '61,020',
+            start_price: '61020',
             end_time: '2021/12/3 19:11:55',
-            end_price: '63,020',
-            way: 'buy'
+            end_price: '63020',
+            way: 'sell'
         }]
     }, {
         title: 'Aurora Project',
-        aurora: [
+        type: 'aurora',
+        data: [
+            
+        ]
+    }, {
+        title: 'Offline Report',
+        type: 'offline',
+        data: [
             
         ]
     }
 ]
 
-// console.log('rc', ReportContent(params))
 
+
+
+
+
+// console.log('rc', ReportContent(params))

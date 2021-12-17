@@ -15,9 +15,10 @@ const Recorder = require('./utils/dataRecorder').Recorder
 
 
 
+
+
 // 发送邮件
 Koa.Post('/mail', async (ctx) => {
-    // console.log('##mail##', ctx.request.body);
     Send(ctx.request.body)
     return {
         msg: 'mail send'
