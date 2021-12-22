@@ -13,7 +13,7 @@ padding: 32px 40px;
 font-weight: bolder;
 line-height: 46px;
 font-size: 41px;
-background: url('https://raw.githubusercontent.com/BobbleHatkjh/VUE-Brick/master/static/banner.svg') no-repeat center center;
+background: url('https://bobblehat-1259032998.cos.ap-beijing.myqcloud.com/GRIS/banner.svg') no-repeat center center;
 background-position: center;
 background-size: 680px;">${title}</div>`}
 const content = (content) => `<div style="width: 640px;padding: 0 20px;margin: auto;min-height: 242px;">${content}</div>`
@@ -26,7 +26,7 @@ box-shadow: 0 0 20px #66ccff8f;
 font-size: 16px;
 line-height: 20px;
 font-weight: 600;
-background: url('https://raw.githubusercontent.com/BobbleHatkjh/VUE-Brick/master/static/grass.svg') no-repeat center center;
+background: url('https://bobblehat-1259032998.cos.ap-beijing.myqcloud.com/GRIS/grass.svg') no-repeat center center;
 background-position: 0% 68%;
 background-size: 680px;">${inscribe}</div>`
 
