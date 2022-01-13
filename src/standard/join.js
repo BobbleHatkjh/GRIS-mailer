@@ -85,7 +85,6 @@ module.exports.Join = (param) => {
 
 /** 周报，月报 之类的邮件内容 */
 module.exports.ReportContent = (params) => {
-
     let ans = '';
     params.map((item) => {
         ans += _r_.title(item);

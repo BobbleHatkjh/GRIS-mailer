@@ -19,4 +19,4 @@
 成功与JUDGE系统连接
 
 [ 2021/12/14 ------------------------------- 21:21:18 ]
-[Billing] [liquidation] [price: 51003.6]
+BILLING [liquidation] [price: 51003.6 - 51003.6]
