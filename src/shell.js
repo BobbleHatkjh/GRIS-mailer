@@ -25,19 +25,19 @@ const run = (param) => {
     }
 
     // 上传
-    // if (param === 'upload') { //      服务器地址 xx.xx.xx.xx
-    //     exec('scp -r build/* root@' + Config.ServerConfig.extranet_address + ':/root/GRIS-Persistent', (error, stdout, stderr) => {
-    //         if (error) {
-    //             console.log(error.message)
-    //             if (error.message.indexOf('File exists') !== -1) {
-    //                 console.log('已有文件夹');
-    //             }
-    //             process.exit();
-    //         }
-    //         console.log('上传完毕');
-    //         process.exit();
-    //     })
-    // }
+    if (param === 'upload') { //      服务器地址 xx.xx.xx.xx
+        exec('scp -r build/* root@' + Config.ServerConfig.extranet_address + ':/root/GRIS-Mailer', (error, stdout, stderr) => {
+            if (error) {
+                console.log(error.message)
+                if (error.message.indexOf('File exists') !== -1) {
+                    console.log('已有文件夹');
+                }
+                process.exit();
+            }
+            console.log('上传完毕');
+            process.exit();
+        })
+    }
 
 };
 
