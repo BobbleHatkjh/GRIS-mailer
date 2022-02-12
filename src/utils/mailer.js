@@ -50,7 +50,7 @@ exports.Send = (message = undefined, mailOptions = standardMailOptions, transpor
 /** 周报 */
 exports.Report = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
     const mailHtml = ReportContent(message);
-    transport.sendMail(message ? {...mailOptions, html: mailHtml} : mailOptions, (err,info) => {
+    transport.sendMail(message ? {...mailOptions, html: mailHtml, cc: message.CC || ''} : mailOptions, (err,info) => {
         if (err) {
             console.log('==========[[[[[[ GRIS\'s Mail ]]]]]]==========\n', err, '\n================== 发送失败 ==================');
         } else {
