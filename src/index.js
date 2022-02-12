@@ -1,9 +1,8 @@
-const Send = require('./utils/mailer').Send;
+const { Send, Report }= require('./utils/mailer');
 const Koa = require('./utils/koaCore').koaCore;
 const Log = require('./utils/logger').Log;
 const Recorder = require('./utils/dataRecorder').Recorder
 
-// const ReportContent = require('./standard/join').ReportContent
 
 // Recorder.Write({
 //     filename: '10_9',
@@ -14,6 +13,13 @@ const Recorder = require('./utils/dataRecorder').Recorder
 
 
 
+// 发送周报
+Koa.Post('/report', async (ctx) => {
+    Report(ctx.request.body);
+    return {
+        msg: 'report mail send'
+    }
+})
 
 
 
@@ -41,11 +47,6 @@ Koa.Post('/log/read', async (ctx) => {
 // 写入数据
 Koa.Post('/data/write', async (ctx) => {
     return await Recorder.Write(ctx.request.body)
-})
-
-// 周报、月报之类的
-Koa.Post('/report', async (ctx) => {
-
 })
 
 

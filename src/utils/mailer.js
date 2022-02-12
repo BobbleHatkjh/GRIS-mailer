@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const Join = require('../standard/join').Join;
+const { Join, ReportContent } = require('../standard/join');
 
 /**
  * 邮箱权限校验
@@ -35,7 +35,7 @@ const mailAnalysis = (param) => {
  * @param transport 发送邮件的基底（邮箱账户，授权码）
  * @param message 直传信息，不为undefined时用默认配置发送这一内容
  * */
-module.exports.Send = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
+exports.Send = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
     const mailHtml = Join(message);
     // console.log(mailHtml);
     transport.sendMail(message ? {...mailOptions, html: mailHtml, cc: message.CC || ''} : mailOptions, (err,info) => {
@@ -46,3 +46,17 @@ module.exports.Send = (message = undefined, mailOptions = standardMailOptions, t
         }
     });
 }
+
+/** 周报 */
+exports.Report = (message = undefined, mailOptions = standardMailOptions, transport = mailTransport) => {
+    const mailHtml = ReportContent(message);
+    transport.sendMail(message ? {...mailOptions, html: mailHtml} : mailOptions, (err,info) => {
+        if (err) {
+            console.log('==========[[[[[[ GRIS\'s Mail ]]]]]]==========\n', err, '\n================== 发送失败 ==================');
+        } else {
+            console.log('==========[[[[[[ GRIS\'s Mail ]]]]]]==========\n', info, '\n================== 发送成功 ==================');
+        }
+    });
+}
+
+

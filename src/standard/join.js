@@ -53,17 +53,21 @@ class Report {
         param.map((item)=>{
             _billing_ += `<div style="display: flex;align-items: center;justify-content: space-between;">
                 <div style="width: 10px;height: 10px;border-radius: 100%;margin-right: 10px;background-color: ${checkBenifit(item) ? '#15f700' : '#eb1535'};box-shadow: 0 0 10px ${checkBenifit(item) ? '#15f700' : '#eb1535'}"></div>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 26%">${item.start_time}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 14%">$${item.start_price}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 6%">${item.way === 'buy' ? '▲' : '▼'}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 14%">$${item.end_price}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 26%">${item.end_time}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: end;width: 8%;overflow: hidden">${!checkBenifit(item) && '-'}${numberBenifit(item)}%</p>
+                
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">~$${item.start_price}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 3%">${item.way === 'buy' ? '▲' : '▼'}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">$${item.end_price}</p>
+                
+                <p style="display: flex;margin: 6px 0 6px auto;justify-content:flex-end;padding:0 3px 0 5px;border-radius: 5px;color:white;background-color: ${checkBenifit(item) ? '#44cd00' : '#eb1535'};width: 18%;overflow: hidden">${numberBenifit(item)} U</p>
             </div>`
         })
         return _billing_
     }
     
+
+    // <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">${item.start_time.substring(5)}</p>
+
+    // <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">${item.end_time.substring(5)}</p>
     aurora = (param) => {
         return ''
     }
@@ -78,19 +82,23 @@ const _r_ = new Report()
 
 
 /** 邮件的拼接 */
-module.exports.Join = (param) => {
+exports.Join = (param) => {
     return head + title(param.title) + content(param.content) + inscribe(param.inscribe) + tail
 }
 
 
 /** 周报，月报 之类的邮件内容 */
-module.exports.ReportContent = (params) => {
-    let ans = '';
-    params.map((item) => {
+exports.ReportContent = (params) => {
+    try {
+      let ans = '';
+      JSON.parse(params.content).map((item) => {
         ans += _r_.title(item);
         ans += _r_[item.type](item.data);
-    })
-    return head + title('test') + content(ans) + inscribe('test123') + tail
+      })
+      return head + title(params.title) + content(ans) + inscribe(params.inscribe) + tail    
+    } catch (error) {
+        
+    }
 }
 
 // 算一下是不是盈利了，赚了的话会返回true
@@ -100,7 +108,8 @@ const checkBenifit = (param) => {
 
 // 盈利了多少s
 const numberBenifit = (param) => {
-    return (Math.max(param.start_price, param.end_price) / Math.min(param.start_price, param.end_price) * 100 - 100).toPrecision(3)
+  return param.earn
+    // return (Math.max(param.start_price, param.end_price) / Math.min(param.start_price, param.end_price) * 100 - 100).toPrecision(3)
 }
 
 
@@ -113,36 +122,36 @@ const numberBenifit = (param) => {
 
 // 周报内容
 const params = [
-    {
-        title: 'Billing Revenue',
-        extra: '测试',
-        type: 'billing',
-        data: [{
-            start_time: '2021/12/3 13:11:55',
-            start_price: '61020',
-            end_time: '2021/12/3 19:11:55',
-            end_price: '63030',
-            way: 'buy'
-        },{
-            start_time: '2021/12/3 13:11:55',
-            start_price: '61020',
-            end_time: '2021/12/3 19:11:55',
-            end_price: '63020',
-            way: 'sell'
-        }]
-    }, {
-        title: 'Aurora Project',
-        type: 'aurora',
-        data: [
-            
-        ]
-    }, {
-        title: 'Offline Report',
-        type: 'offline',
-        data: [
-            
-        ]
-    }
+  {
+      title: 'Billing Revenue',
+      extra: '测试',
+      type: 'billing',
+      data: [{
+          start_time: '2021/12/3 13:11:55',
+          start_price: '61020',
+          end_time: '2021/12/3 19:11:55',
+          end_price: '63030',
+          way: 'buy'
+      },{
+          start_time: '2021/12/3 13:11:55',
+          start_price: '61020',
+          end_time: '2021/12/3 19:11:55',
+          end_price: '63020',
+          way: 'sell'
+      }]
+  }, {
+      title: 'Aurora Project',
+      type: 'aurora',
+      data: [
+          
+      ]
+  }, {
+      title: 'Offline Report',
+      type: 'offline',
+      data: [
+          
+      ]
+  }
 ]
 
 
