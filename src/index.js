@@ -13,6 +13,8 @@ const Recorder = require('./utils/dataRecorder').Recorder
 
 
 
+
+
 // 发送周报
 Koa.Post('/report', async (ctx) => {
     Report(ctx.request.body);
@@ -20,7 +22,6 @@ Koa.Post('/report', async (ctx) => {
         msg: 'report mail send'
     }
 })
-
 
 
 // 发送邮件

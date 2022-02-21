@@ -16,7 +16,7 @@ font-size: 41px;
 background: url('https://bobblehat-1259032998.cos.ap-beijing.myqcloud.com/GRIS/banner.svg') no-repeat center center;
 background-position: center;
 background-size: 680px;">${title}</div>`}
-const content = (content) => `<div style="width: 640px;padding: 0 20px;margin: auto;min-height: 242px;">${content}</div>`
+const content = (content) => `<div style="width: 660px;padding: 0 10px;margin: auto;min-height: 242px;">${content}</div>`
 const inscribe = (inscribe) => `<div style="
 width: 640px;
 margin: 20px auto;
@@ -52,19 +52,19 @@ class Report {
         let _billing_ = '';
         param.map((item)=>{
             _billing_ += `<div style="display: flex;align-items: center;justify-content: space-between;">
-                <div style="width: 10px;height: 10px;border-radius: 100%;margin-right: 10px;background-color: ${checkBenifit(item) ? '#15f700' : '#eb1535'};box-shadow: 0 0 10px ${checkBenifit(item) ? '#15f700' : '#eb1535'}"></div>
+            <div style="width: 4px;height: 13px;border-radius: 10px;background-color: ${checkBenifit(item) ? '#44cd00' : '#eb1535'};"></div>
+                <p style="display: flex;margin: 6px auto;justify-content: flex-start;width: 25%">${item.end_time.substring(5)}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 18%">~$${item.start_price}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 2%;text-shadow: 0 0 6px ${checkTrend(item) ? '#44cd00' : '#eb1535'};color: ${checkBenifit(item) ? '#44cd00' : '#eb1535'}">${item.way === 'buy' ? '▲' : '▼'}</p>
+                <p style="display: flex;margin: 6px auto;justify-content: center;width: 16%">$${item.end_price}</p>
                 
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">~$${item.start_price}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 3%">${item.way === 'buy' ? '▲' : '▼'}</p>
-                <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">$${item.end_price}</p>
-                
-                <p style="display: flex;margin: 6px 0 6px auto;justify-content:flex-end;padding:0 3px 0 5px;border-radius: 5px;color:white;background-color: ${checkBenifit(item) ? '#44cd00' : '#eb1535'};width: 18%;overflow: hidden">${numberBenifit(item)} U</p>
+                <p style="display: flex;margin: 6px 0 6px auto;justify-content:flex-end;padding:0 3px 0 5px;border-radius: 5px;color:white;background-color: ${checkBenifit(item) ? '#44cd00' : '#eb1535'};width: 19%;overflow: hidden">${numberBenifit(item)} U</p>
             </div>`
         })
         return _billing_
     }
     
-
+    // <div style="width: 4px;height: 13px;border-radius: 10px;margin-right: 10px;background-color: ${checkBenifit(item) ? '#15f700' : '#eb1535'};box-shadow: 0 0 6px ${checkBenifit(item) ? '#15f700' : '#eb1535'}"></div>
     // <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">${item.start_time.substring(5)}</p>
 
     // <p style="display: flex;margin: 6px auto;justify-content: center;width: 19%">${item.end_time.substring(5)}</p>
@@ -103,7 +103,13 @@ exports.ReportContent = (params) => {
 
 // 算一下是不是盈利了，赚了的话会返回true
 const checkBenifit = (param) => {
-    return (param.start_price - param.end_price > 0 && param.way === 'sell') || (param.start_price - param.end_price < 0 && param.way === 'buy')
+    return param.earn > 0
+    // return (param.start_price - param.end_price > 0 && param.way === 'sell') || (param.start_price - param.end_price < 0 && param.way === 'buy')
+}
+
+// 检查趋势 涨了饭回true
+const checkTrend = (param) => {
+    return param.start_price < param.end_price
 }
 
 // 盈利了多少s
@@ -131,7 +137,8 @@ const params = [
           start_price: '61020',
           end_time: '2021/12/3 19:11:55',
           end_price: '63030',
-          way: 'buy'
+          way: 'buy',
+          earn: '11.3'
       },{
           start_time: '2021/12/3 13:11:55',
           start_price: '61020',
